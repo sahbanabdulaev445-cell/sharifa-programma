@@ -1,4 +1,15 @@
 document.querySelector('#print-button').addEventListener('click', () => window.print());
+// Include every original paragraph in print, then restore the reader's open sections.
+let printState = null;
+window.addEventListener('beforeprint', () => {
+  if (printState) return;
+  printState = [...document.querySelectorAll('details')].map(detail => [detail, detail.open]);
+  printState.forEach(([detail]) => { detail.open = true; });
+});
+window.addEventListener('afterprint', () => {
+  printState?.forEach(([detail, open]) => { detail.open = open; });
+  printState = null;
+});
 const chapters = [...document.querySelectorAll('.chapter')];
 const previous = document.querySelector('#previous');
 const next = document.querySelector('#next');
@@ -22,4 +33,5 @@ next.addEventListener('click', () => goTo(current + 1));
 let ticking = false;
 window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { updateChapter(); ticking = false; }); } }, {passive:true});
 window.addEventListener('resize', updateChapter);
+document.querySelectorAll('details').forEach(detail => detail.addEventListener('toggle', () => requestAnimationFrame(updateChapter)));
 updateChapter();

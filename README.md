@@ -1,5 +1,7 @@
-# Sharifa
+﻿# Sharifa
 
-Programme for parents. Complete source text and programme materials supplied by the school.
+Программа обучения для родителей: от первых арабских букв к чтению и заучиванию Корана.
 
-Static website; no installation or build required.
+Крупные иллюстрации и короткие пояснения. Полное обращение и все материалы программы доступны в раскрывающихся блоках. Сайт работает без установки и сборки; изображения и системные шрифты доступны локально.
+
+Публичная страница: https://sahbanabdulaev445-cell.github.io/sharifa-programma/
